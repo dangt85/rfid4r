@@ -1,0 +1,10 @@
+local_config:
+  id_server: 0
+  ip_address: 127.0.0.1
+  port: 8004
+  timeout: 5000
+
+server1:
+  id_server: 1
+  ip_address: 127.0.0.1
+  port: 8000

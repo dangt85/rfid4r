@@ -1,0 +1,48 @@
+= rfid4r
+An RFID middleware using a Ruby wrapper for the PhidgetRFID-1023 reader.
+
+== System Configuration
+Para el correcto funcionamiento de este gem, sera necesario instalar en nuestro ambiente de desarrollo la libreria del lector 
+RFID PhidgetRFID-1023 (http://www.phidgets.com/) y la libreria SQLite3 (http://www.sqlite.org/) para manejo de bases de datos.
+Por otra parte, nuestro gem depende del gem sqlit3-ruby (http://rubyforge.org/projects/sqlite-ruby/) para un funcionamiento optimo
+en el manejo de la base de datos SQLite.
+
+==  Installing
+La instalación es muy sencilla, simplemente se debe descargar el gem con los archivos necesarios e instalarlo (enlace rubyforge)
+usando los comandos provistos por Rubygems, por ejemplo, una vez descargado el paquete rfid4r-1.0.0-x86-linux.gem
+basta con ejecutar el siguiente comando:
+ > sudo gem install rfid4r-1.0.0-x86-linux.gem
+
+== Middleware Setup
+Una vez instalado nuestro gem podrá ser usado para el desarrollo de cualquier aplicacion o Middleware RFID que se desee, 
+basta con importar en el codigo los gems necesario, por ejemplo:
+ #Rubygems
+ require 'rubygems' 
+ #Nuestor gem Rfid4r para el manejo de lectores PhidgetRFID-1023
+ require 'rfid4r'
+En este punto podrá usar las funcionalidades provistas por nuestro gem y que se especifican en esta documentación.
+Un aspecto importante para el correcto funcionamiento del gem, esta relacionado al RfidServer, que representa un pequeño
+servidor para el manejo del lector RFID, por lo que siempre será necesario configurar e iniciar el servidor para la utilización
+del lector RFID asociado. Finalmente para la configuración del servidor se requiere de un archivo de configuracion YAML, y deberá cumplir 
+con la siguiente sintaxis:
+ #filename: rfid_config.yml
+
+ #configuracion local del servidor
+ local_config:
+  id_server: [id]
+  ip_address: [ip_address]
+  port: [port]
+
+ #Configuracion de los otros servidores que podran comunicarse e intercambiar consultas con el servidor local 
+ server[id_of_server_1]:
+  id_server: [id_1]
+  ip_address: [ip_address_1]
+  port: [port_1]
+ .
+ .
+ .
+ server[id_of_server_n]:
+  id_server: [id_n]
+  ip_address: [ip_address_n]
+  port: [port_n]
+
